@@ -1,9 +1,19 @@
 # Arduino Game Console
+
+## Table of Contents
+[1. Introduction](#introduction)\
+[2. Overview](#overview)\
+[3. Hardware Design](#hardware-design)\
+[4. Software Design](#software-design)\
+[5. Setup](#setup)\
+[6. Conclusions](#conclusions)\
+[7. Resources](#resources)
+
 ## Introduction
 
 This project focuses on developing a Game Console designed to deliver an engaging gaming experience through a custom-built game inspired by the classic Chicken Invaders. The console integrates an LCD display and physical buttons for input, enabling players to interact seamlessly with the game environment. The system offers a complete standalone experience, including a main menu and interactive gameplay mechanics.
 
-At the core of this project is the integration of an ATMega328P microcontroller with peripherals to handle game logic, render visuals, and process user inputs in real-time. This implementation demonstrates key principles of embedded systems, including hardware-software interfacing, event-driven programming, and optimization for constrained environments. It serves as an excellent introduction to practical embedded systems design and gaming applications.
+At the core of this project is the integration of an ATMega328P microcontroller with peripherals to handle game logic, render visuals, and process user inputs in real-time. This project includes principles of embedded systems like interrupts, analog-to-digital conversion (ADC), and timers to efficiently manage input, display updates, and game logic.
 
 ## Overview
 ### Features
