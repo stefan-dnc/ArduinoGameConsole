@@ -13,9 +13,12 @@
 
 This project focuses on developing a Game Console designed to deliver an engaging gaming experience through a custom-built game inspired by Chicken Invaders. The console integrates an LCD display, a joystick for directional input, a push button, and a buzzer for sound feedback. The system offers a complete standalone experience by using a battery pack.
 
-At the core of this project is the integration of an ATMega328P microcontroller with peripherals to handle game logic, render visuals, and process user inputs in real-time. This project includes principles of embedded systems like interrupts, analog-to-digital conversion (ADC), and timers to efficiently manage input, display updates, and game logic.
+At the core of this project is the integration of an ATMega328P microcontroller with peripherals to handle game logic, render visuals, and process user inputs in real-time. This project includes principles of embedded systems like SPI, analog-to-digital conversion (ADC), and timers to efficiently manage input, display updates, and game logic.
 
 ![Working project](media/circuit_photo.png)
+
+## YouTube Video
+[![YouTube Video](https://img.youtube.com/vi/MEEA9Vy9UWc/hqdefault.jpg)](https://www.youtube.com/watch?v=MEEA9Vy9UWc)
 
 ### LCD Close-Up View
 
@@ -27,15 +30,15 @@ The image below showcases the **ST7735 LCD Display** in operation, rendering the
 - Interactive Gameplay
     - A dynamic, challenging game inspired by Chicken Invaders.
     - Real-time updates and responses based on user input.
-    - Scoring system to track player performance.
+    - Enemy wave system to track player performance.
 - Main Menu
     - Start new game.
-    - View high scores.
-    - Reset or restart options.
+    - Change display brightness.
+    - View details about the project.
 - Custom Hardware Integration
     - Joystick: For smooth bidirectional input and a built-in switch for special actions.
-    - Push Button: Handles in-game triggers.
-    - LCD Display: Renders game visuals and information.
+    - Push Button: Handles secondary actions.
+    - LCD Display: Renders game visuals and menus.
     - Buzzer: Provides audio feedback for interactions.
 - Portable Design
     - Powered by a 6V battery pack with an on/off switch.
@@ -108,6 +111,34 @@ The **ST7735 LCD** and **joystick** are the primary input/output peripherals. Th
   - `Adafruit ST7735` (to interface with LCD)
   - `SPI` (used for communication with the ST7735 LCD)
 
+### Key Features and Functionalities 
+#### Object-Oriented Programming (OOP)
+Each game element (Player, Bullet, Enemy) has its own class, containing attributes like position, state, and behavior.
+Scalable Difficulty
+
+#### The game dynamically adjusts its difficulty based on the player's progress. Key aspects include:
+- Enemy Speed: Enemies move faster and shoot more frequently as the player scores higher.
+- Bullet Frequency: Both player and enemy bullets increase in frequency, intensifying the gameplay.
+
+### Principal Functions
+- void Bullet::move(): Updates bullet position, checks boundaries, and deactivates bullets off-screen.
+- void Bullet::draw(): Renders bullets on the LCD using their current state and position.
+- void Player::move(int direction): Handles player movement based on joystick input, ensuring boundaries are respected.
+- void Player::shoot(): Returns true when the joystick button is pressed, initiating bullet firing.
+- void Enemy::move(): Controls enemy movement with periodic direction changes and boundary checks.
+- bool Enemy::shoot(): Determines enemy shooting probability per frame, adding randomness to the gameplay.
+
+### Advanced Techniques
+
+#### PWM for LCD Brightness
+**PWM (Pulse Width Modulation)** is utilized via the analogWrite() function to adjust the LCD brightness in settings.
+
+#### Button Debouncing Using Timers
+The push button utilizes a software **debouncing** technique implemented through millis(). This approach tracks the time elapsed since the last button press, ignoring spurious signals and ensuring reliable input detection. The debounce logic improves game responsiveness and reduces input errors.
+
+#### SPI Communication for LCD
+**SPI (Serial Peripheral Interface)** ensures high-speed communication between the microcontroller and the ST7735 LCD. The game uses this protocol to efficiently update the screen with minimal latency. Commands and data are sent through dedicated MOSI and SCK lines, while control signals (CS, RESET, A0) manage the LCD's state and operations.
+
 ## Setup
 
 1. **Hardware Assembly**:  
@@ -129,8 +160,15 @@ The **ST7735 LCD** and **joystick** are the primary input/output peripherals. Th
    - Use the on/off switch to power the system.  
    - Control gameplay using the joystick and button inputs.  
 
+## Additional Features or Future Improvements
+- Dynamic scalable enemies: advanced enemies, dynamically growing number of enemies
+- High score persistence: saving user data locally
+- Customization options: more settings to adapt to user preference
+
 ## Conclusions
-[WIP]
+The use of Object-Oriented Programming (OOP) principles was very useful in designing this project. By encapsulating game elements like the player, bullets, and enemies into modular classes, the whole project remains scalable. This structure supports the easy addition of new features in the future like derived classes for special enemies and allows for the game difficulty to scale dynamically, providing a good gaming experience.
+
+In conclusion, the Arduino Game Console (ArduStation) presents how well hardware and software can work together to deliver a robust and enjoyable gaming experience. The project was created by using both embedded systems and OOP principles and this approach makes it a valuable project for learning and demonstration purposes. 
 
 ## Resources
 
